@@ -1,0 +1,1322 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #3b2b1c 0%,
+            #1b1510 38%,
+            #090807 100%
+        );
+
+    color: #ead9b5;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.ambient-light {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(224, 168, 78, .15),
+            transparent 48%
+        );
+
+    z-index: 0;
+}
+
+.lamp-glow {
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    top: -100px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: rgba(229, 173, 81, .08);
+
+    filter: blur(50px);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,218,143,.35) 1px, transparent 1px);
+
+    background-size:
+        90px 90px,
+        140px 140px;
+
+    background-position:
+        20px 30px,
+        70px 80px;
+
+    opacity: .3;
+
+    z-index: 0;
+}
+
+.film-grain {
+    position: fixed;
+    inset: -50%;
+
+    pointer-events: none;
+
+    opacity: .055;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+
+    animation: grain .18s steps(2) infinite;
+
+    z-index: 100;
+}
+
+@keyframes grain {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(2%, -1%);
+    }
+
+    50% {
+        transform: translate(-1%, 2%);
+    }
+
+    75% {
+        transform: translate(1%, 1%);
+    }
+
+    100% {
+        transform: translate(-2%, -1%);
+    }
+}
+
+
+/* =========================================================
+   SCREENS
+========================================================= */
+
+.screen {
+    position: relative;
+
+    display: none;
+
+    min-height: 100vh;
+
+    padding:
+        80px
+        30px
+        120px;
+
+    z-index: 2;
+}
+
+.screen.active {
+    display: block;
+
+    animation: screenIn .8s ease both;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   INTRO / ROOM
+========================================================= */
+
+.room {
+    min-height: calc(100vh - 150px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   LAMP
+========================================================= */
+
+.lamp {
+    position: absolute;
+
+    top: 10px;
+    right: 8%;
+
+    width: 150px;
+
+    opacity: .85;
+}
+
+.lamp-shade {
+    width: 130px;
+    height: 70px;
+
+    margin: auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b78a43,
+            #704b22
+        );
+
+    clip-path: polygon(
+        22% 0,
+        78% 0,
+        100% 100%,
+        0 100%
+    );
+
+    box-shadow:
+        0 0 40px rgba(234, 175, 76, .25);
+}
+
+.lamp-stem {
+    width: 8px;
+    height: 80px;
+
+    margin: auto;
+
+    background: #4d3924;
+}
+
+.lamp-base {
+    width: 55px;
+    height: 12px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: #382918;
+}
+
+
+/* =========================================================
+   VINTAGE CARD
+========================================================= */
+
+.vintage-card {
+    position: relative;
+
+    width: min(620px, 94vw);
+
+    padding: 55px 45px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(54, 39, 25, .97),
+            rgba(28, 21, 15, .97)
+        );
+
+    border:
+        1px solid rgba(220, 173, 88, .35);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, .65),
+        inset 0 0 50px rgba(234, 178, 83, .035);
+
+    border-radius: 4px;
+}
+
+.vintage-card::before,
+.vintage-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    border-color: #b88b4c;
+    opacity: .5;
+}
+
+.vintage-card::before {
+    top: 12px;
+    left: 12px;
+
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+
+.vintage-card::after {
+    right: 12px;
+    bottom: 12px;
+
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.card-corner {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    color: #d7aa60;
+
+    opacity: .6;
+}
+
+.small-label,
+.section-label {
+    color: #c39a59;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+.vinyl-icon {
+    font-size: 52px;
+
+    margin: 22px 0;
+
+    filter:
+        sepia(.7)
+        drop-shadow(0 5px 10px rgba(0,0,0,.5));
+
+    animation: vinylSpin 8s linear infinite;
+}
+
+@keyframes vinylSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+h1,
+h2 {
+    font-weight: normal;
+
+    letter-spacing: 1px;
+}
+
+.intro-card h1 {
+    font-size: clamp(42px, 8vw, 76px);
+
+    line-height: .95;
+
+    color: #e8d2a5;
+
+    text-shadow:
+        0 3px 20px rgba(0,0,0,.5);
+}
+
+.intro-card h1 span {
+    display: block;
+
+    color: #bd8d48;
+
+    font-size: .65em;
+
+    margin-top: 15px;
+}
+
+.divider {
+    margin: 25px 0;
+
+    color: #b98945;
+
+    letter-spacing: 5px;
+}
+
+.intro-text {
+    max-width: 450px;
+
+    margin: auto;
+
+    color: #bca988;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+}
+
+.tiny-note {
+    margin-top: 18px;
+
+    color: #806b50;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.gold-button {
+    margin-top: 30px;
+
+    padding: 14px 24px;
+
+    border: 1px solid #a87938;
+
+    background:
+        linear-gradient(
+            180deg,
+            #6d4d26,
+            #3d2b18
+        );
+
+    color: #e8d1a2;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.gold-button:hover {
+    transform: translateY(-3px);
+
+    background:
+        linear-gradient(
+            180deg,
+            #8b632e,
+            #50371c
+        );
+
+    box-shadow:
+        0 8px 25px rgba(202, 149, 62, .18);
+}
+
+.gold-button:active {
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   MIDNIGHT RADIO
+========================================================= */
+
+.music-player {
+    position: fixed;
+
+    top: 18px;
+    left: 18px;
+
+    width: 220px;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #302316,
+            #17100b
+        );
+
+    border:
+        1px solid rgba(193, 147, 74, .35);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.5);
+
+    z-index: 50;
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+.player-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.radio-light {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #e5aa4f;
+
+    box-shadow:
+        0 0 6px #e5aa4f,
+        0 0 14px rgba(229,170,79,.5);
+
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 45%, 100% {
+        opacity: 1;
+    }
+
+    50%, 90% {
+        opacity: .3;
+    }
+}
+
+.radio-label {
+    color: #d2aa68;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.radio-frequency {
+    margin: 7px 0;
+
+    text-align: center;
+
+    color: #806a4b;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+.cassette-display {
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 6px;
+
+    background: #080705;
+
+    border:
+        1px solid #49351f;
+}
+
+.cassette-holes {
+    display: flex;
+
+    gap: 4px;
+}
+
+.cassette-holes span {
+    width: 12px;
+    height: 12px;
+
+    border: 2px solid #8d6b3e;
+
+    border-radius: 50%;
+}
+
+.cassette-label {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    color: #c7a568;
+
+    font-size: 8px;
+
+    max-width: 130px;
+}
+
+.music-controls {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 10px;
+}
+
+.music-controls button {
+    width: 32px;
+    height: 27px;
+
+    border: 1px solid #6c4d28;
+
+    background: #24180e;
+
+    color: #c99b52;
+
+    cursor: pointer;
+}
+
+.music-controls .play-button {
+    width: 42px;
+
+    color: #f0d69e;
+
+    background: #4d351b;
+}
+
+.volume-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 9px;
+
+    color: #816d52;
+
+    font-size: 10px;
+}
+
+.volume-row input {
+    width: 100%;
+    accent-color: #b88743;
+}
+
+
+/* =========================================================
+   DECADE PAGE
+========================================================= */
+
+.decade-page,
+.game-container,
+.mystery-container,
+.wishes-container {
+    max-width: 1000px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.decade-page h2,
+.game-container h2,
+.mystery-container h2,
+.wishes-container h2 {
+    margin-top: 15px;
+
+    font-size: clamp(38px, 6vw, 60px);
+
+    color: #e0c693;
+}
+
+.section-description {
+    margin: 18px auto 35px;
+
+    color: #a8977c;
+
+    line-height: 1.8;
+}
+
+.decade-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 40px;
+}
+
+.decade-card {
+    min-height: 250px;
+
+    padding: 30px 20px;
+
+    border: 1px solid rgba(199, 153, 75, .3);
+
+    color: #d9c39a;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(58,42,25,.95),
+            rgba(26,19,13,.95)
+        );
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.decade-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #b88843;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.45);
+}
+
+.decade-icon {
+    font-size: 48px;
+
+    margin-bottom: 15px;
+}
+
+.decade-number {
+    font-size: 48px;
+
+    color: #d2aa67;
+}
+
+.decade-name {
+    margin-top: 5px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    letter-spacing: 3px;
+
+    font-size: 11px;
+}
+
+.decade-line {
+    width: 55px;
+    height: 1px;
+
+    margin: 18px auto;
+
+    background: #98703a;
+}
+
+.decade-card small {
+    color: #88765d;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   DECADE CONTENT
+========================================================= */
+
+.decade-content {
+    min-height: 120px;
+
+    margin-top: 35px;
+}
+
+.old-paper {
+    max-width: 600px;
+
+    margin: auto;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3c2e1e,
+            #2b2014
+        );
+
+    border:
+        1px solid rgba(201, 157, 87, .25);
+
+    color: #baa77f;
+
+    line-height: 1.7;
+}
+
+.paper-icon {
+    color: #b98945;
+
+    margin: 0 10px;
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+.game-description {
+    margin: 18px 0;
+
+    color: #9e8b6f;
+
+    line-height: 1.7;
+}
+
+.game-stats {
+    max-width: 600px;
+
+    margin: 20px auto 10px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #9e8150;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+}
+
+.game-area {
+    position: relative;
+
+    width: min(700px, 95vw);
+    height: 420px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    border:
+        2px solid #74532b;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(211,164,77,.08),
+            transparent 35%
+        ),
+        #080706;
+
+    box-shadow:
+        inset 0 0 60px rgba(0,0,0,.8);
+}
+
+.player {
+    position: absolute;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 32px;
+
+    user-select: none;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(229,170,79,.4)
+        );
+}
+
+.falling-star {
+    position: absolute;
+
+    color: #f1ca79;
+
+    font-size: 22px;
+
+    user-select: none;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 0 8px rgba(255,203,101,.6);
+}
+
+.game-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.arrow-button {
+    width: 55px;
+    height: 42px;
+
+    border: 1px solid #76532a;
+
+    background: #25180e;
+
+    color: #d3a65d;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.game-message {
+    margin-top: 15px;
+
+    color: #a38d6c;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MYSTERY BOXES
+========================================================= */
+
+.mystery-container > p {
+    margin-top: 15px;
+
+    color: #9f8c70;
+}
+
+.mystery-boxes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    max-width: 750px;
+
+    margin: 45px auto 25px;
+}
+
+.mystery-box {
+    min-height: 220px;
+
+    border:
+        1px solid #76542d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #49321b,
+            #21160d
+        );
+
+    color: #d5aa60;
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.mystery-box:hover {
+    transform: translateY(-8px) rotate(-1deg);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5);
+}
+
+.mystery-box span {
+    display: block;
+
+    font-size: 65px;
+
+    margin-bottom: 20px;
+}
+
+.mystery-box small {
+    font-family:
+        "Courier New",
+        monospace;
+
+    letter-spacing: 2px;
+
+    color: #96744a;
+}
+
+.box-message {
+    min-height: 55px;
+
+    max-width: 600px;
+
+    margin: auto;
+
+    color: #cbb38a;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   WISHES
+========================================================= */
+
+.wishes-intro {
+    margin-top: 15px;
+
+    color: #9e8c72;
+}
+
+.wish-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 45px;
+}
+
+.wish-card {
+    padding: 30px 22px;
+
+    min-height: 210px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(57,42,27,.9),
+            rgba(26,19,13,.95)
+        );
+
+    border:
+        1px solid rgba(186,139,68,.25);
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
+}
+
+.wish-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(206,162,88,.55);
+}
+
+.wish-card > span {
+    display: block;
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+.wish-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 22px;
+
+    color: #d5b67d;
+
+    font-weight: normal;
+}
+
+.wish-card p {
+    color: #9e8d72;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FINAL BIRTHDAY
+========================================================= */
+
+.final-room {
+    min-height: calc(100vh - 120px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.birthday-card {
+    max-width: 700px;
+}
+
+.string-lights {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+.string-lights span {
+    color: #e4aa55;
+
+    text-shadow:
+        0 0 12px #e4aa55;
+
+    animation: lightFlicker 2s infinite;
+}
+
+.string-lights span:nth-child(2) {
+    animation-delay: .3s;
+}
+
+.string-lights span:nth-child(3) {
+    animation-delay: .7s;
+}
+
+.string-lights span:nth-child(4) {
+    animation-delay: 1s;
+}
+
+@keyframes lightFlicker {
+    0%, 100% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.cake {
+    margin-bottom: 25px;
+}
+
+.flame {
+    font-size: 30px;
+
+    animation:
+        flame 1s infinite alternate ease-in-out;
+}
+
+@keyframes flame {
+    from {
+        transform: scale(.9);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+.cake-body {
+    font-size: 70px;
+
+    filter:
+        drop-shadow(
+            0 8px 12px rgba(0,0,0,.4)
+        );
+}
+
+.birthday-title {
+    font-size: clamp(48px, 9vw, 82px);
+
+    color: #e4c990;
+
+    margin-top: 10px;
+}
+
+.birthday-message {
+    max-width: 530px;
+
+    margin: auto;
+
+    color: #c3ad87;
+
+    line-height: 1.9;
+
+    font-size: 16px;
+}
+
+.little-note {
+    margin-top: 30px;
+
+    color: #8e7a5c;
+
+    line-height: 1.7;
+
+    font-size: 13px;
+}
+
+.signature {
+    margin-top: 28px;
+
+    color: #d1a35a;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+}
+
+.footer-credit {
+    margin-top: 35px;
+
+    color: #665744;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .music-player {
+        position: fixed;
+
+        top: auto;
+        bottom: 12px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: min(330px, 92vw);
+    }
+
+    .screen {
+        padding-top: 45px;
+        padding-bottom: 130px;
+    }
+
+    .lamp {
+        right: -20px;
+
+        transform: scale(.7);
+
+        transform-origin: top right;
+
+        opacity: .5;
+    }
+
+    .decade-buttons,
+    .wish-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .mystery-boxes {
+        grid-template-columns: 1fr;
+
+        max-width: 300px;
+    }
+
+    .decade-card {
+        min-height: 200px;
+    }
+
+    .game-area {
+        height: 350px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .screen {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .vintage-card {
+        padding: 40px 22px;
+    }
+
+    .intro-card h1 {
+        font-size: 48px;
+    }
+
+    .game-controls {
+        gap: 7px;
+    }
+
+    .arrow-button {
+        width: 45px;
+    }
+}
+s
