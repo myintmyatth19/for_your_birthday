@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A little birthday trip through time."
+    >
+
+    <title>A Little Trip Through Time 🌙</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         AMBIENT BACKGROUND
+    ====================================================== -->
+
+    <div class="ambient-light"></div>
+
+    <div class="lamp-glow"></div>
+
+    <div class="stars"></div>
+
+    <div class="dust-container"></div>
+
+    <div class="film-grain"></div>
+
+
+    <!-- =====================================================
+         MIDNIGHT RADIO
+    ====================================================== -->
+
+    <div class="music-player">
+
+        <div class="player-top">
+
+            <span class="radio-light"></span>
+
+            <span class="radio-label">
+                MIDNIGHT RADIO
+            </span>
+
+        </div>
+
+
+        <div class="radio-frequency">
+            88.7 ─────── 101.3 FM
+        </div>
+
+
+        <div class="cassette-display">
+
+            <div class="cassette-holes">
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="cassette-label">
+
+                <span id="songTitle">
+                    Choose a decade...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="music-controls">
+
+            <button
+                id="previousButton"
+                aria-label="Previous song"
+            >
+                ◀
+            </button>
+
+            <button
+                id="playButton"
+                class="play-button"
+                aria-label="Play music"
+            >
+                ▶
+            </button>
+
+            <button
+                id="nextButton"
+                aria-label="Next song"
+            >
+                ▶
+            </button>
+
+        </div>
+
+
+        <div class="volume-row">
+
+            <span>🔈</span>
+
+            <input
+                id="volume"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.55"
+            >
+
+            <span>🔊</span>
+
+        </div>
+
+    </div>
+
+
+    <audio id="audio"></audio>
+
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <main
+        id="intro"
+        class="screen active"
+    >
+
+        <div class="room">
+
+
+            <!-- OLD DESK LAMP -->
+
+            <div class="lamp">
+
+                <div class="lamp-shade"></div>
+
+                <div class="lamp-stem"></div>
+
+                <div class="lamp-base"></div>
+
+            </div>
+
+
+            <!-- INTRO CARD -->
+
+            <div class="intro-card vintage-card">
+
+
+                <div class="card-corner">
+                    ✦
+                </div>
+
+
+                <div class="small-label">
+                    A LITTLE SOMETHING FOR YOU
+                </div>
+
+
+                <div class="vinyl-icon">
+                    💿
+                </div>
+
+
+                <h1>
+
+                    A Little Trip
+
+                    <span>
+                        Through Time
+                    </span>
+
+                </h1>
+
+
+                <div class="divider">
+                    ───── ✦ ─────
+                </div>
+
+
+                <p class="intro-text">
+
+                    Somewhere between an old record,
+                    a cassette tape, and a VHS...
+
+                    <br><br>
+
+                    there's a little birthday surprise
+                    waiting for you.
+
+                </p>
+
+
+                <button
+                    class="gold-button"
+                    onclick="startJourney()"
+                >
+
+                    ENTER THE TIME MACHINE
+
+                    <span>→</span>
+
+                </button>
+
+
+                <p class="tiny-note">
+
+                    turn the music up 🎵
+
+                </p>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         DECADE SELECTOR
+    ====================================================== -->
+
+    <section
+        id="decades"
+        class="screen"
+    >
+
+        <div class="decade-page">
+
+
+            <div class="section-label">
+                THE TIME MACHINE
+            </div>
+
+
+            <h2>
+                Choose a decade
+            </h2>
+
+
+            <p class="section-description">
+
+                Three decades.
+
+                <br>
+
+                Three different sounds.
+
+                <br>
+
+                One little birthday journey.
+
+            </p>
+
+
+            <div class="decade-buttons">
+
+
+                <!-- 70s -->
+
+                <button
+                    class="decade-card seventies"
+                    onclick="showDecade('70s')"
+                >
+
+                    <div class="decade-icon">
+                        🪩
+                    </div>
+
+                    <div class="decade-number">
+                        70s
+                    </div>
+
+                    <div class="decade-name">
+                        DISCO
+                    </div>
+
+                    <div class="decade-line"></div>
+
+                    <small>
+                        records • disco • warm nights
+                    </small>
+
+                </button>
+
+
+                <!-- 80s -->
+
+                <button
+                    class="decade-card eighties"
+                    onclick="showDecade('80s')"
+                >
+
+                    <div class="decade-icon">
+                        📻
+                    </div>
+
+                    <div class="decade-number">
+                        80s
+                    </div>
+
+                    <div class="decade-name">
+                        CASSETTES
+                    </div>
+
+                    <div class="decade-line"></div>
+
+                    <small>
+                        synths • neon • midnight
+                    </small>
+
+                </button>
+
+
+                <!-- 90s -->
+
+                <button
+                    class="decade-card nineties"
+                    onclick="showDecade('90s')"
+                >
+
+                    <div class="decade-icon">
+                        📼
+                    </div>
+
+                    <div class="decade-number">
+                        90s
+                    </div>
+
+                    <div class="decade-name">
+                        VHS
+                    </div>
+
+                    <div class="decade-line"></div>
+
+                    <small>
+                        tapes • games • nostalgia
+                    </small>
+
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 DECADE INFORMATION
+            ================================================== -->
+
+            <div
+                id="decadeContent"
+                class="decade-content"
+            >
+
+                <div class="old-paper">
+
+                    <span class="paper-icon">
+                        ✦
+                    </span>
+
+                    <p>
+                        Pick a decade above...
+                    </p>
+
+                    <span class="paper-icon">
+                        ✦
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 GAME BUTTON
+            ================================================== -->
+
+            <button
+                id="gameButton"
+                class="gold-button hidden"
+                onclick="openGame()"
+            >
+
+                🕹️ PLAY STAR CATCHER
+
+            </button>
+
+
+            <!-- =================================================
+                 MYSTERY BOX BUTTON
+            ================================================== -->
+
+            <button
+                id="mysteryButton"
+                class="gold-button hidden"
+                onclick="openMysteries()"
+            >
+
+                🎁 THREE LITTLE SURPRISES
+
+            </button>
+
+
+            <!-- =================================================
+                 BIRTHDAY BUTTON
+            ================================================== -->
+
+            <button
+                id="birthdayButton"
+                class="gold-button hidden"
+                onclick="birthday()"
+            >
+
+                🎂 OPEN THE FINAL SURPRISE
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STAR CATCHER GAME
+    ====================================================== -->
+
+    <section
+        id="game"
+        class="screen"
+    >
+
+        <div class="game-container">
+
+
+            <div class="section-label">
+                MIDNIGHT ARCADE
+            </div>
+
+
+            <h2>
+                ✦ STAR CATCHER ✦
+            </h2>
+
+
+            <p class="game-description">
+
+                Catch the falling stars.
+
+                <br>
+
+                You have 30 seconds.
+
+            </p>
+
+
+            <div class="game-stats">
+
+                <span>
+                    SCORE:
+                    <strong id="score">
+                        0
+                    </strong>
+                </span>
+
+
+                <span>
+                    TIME:
+                    <strong id="timer">
+                        30
+                    </strong>
+                </span>
+
+            </div>
+
+
+            <div
+                id="gameArea"
+                class="game-area"
+                tabindex="0"
+            >
+
+                <div
+                    id="player"
+                    class="player"
+                >
+                    🕹️
+                </div>
+
+            </div>
+
+
+            <div class="game-controls">
+
+                <button
+                    class="arrow-button"
+                    onclick="movePlayer(-1)"
+                >
+                    ←
+                </button>
+
+                <button
+                    class="gold-button"
+                    onclick="startGame()"
+                >
+                    START GAME
+                </button>
+
+                <button
+                    class="arrow-button"
+                    onclick="movePlayer(1)"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+            <p
+                id="gameMessage"
+                class="game-message"
+            >
+                Use ← → or A / D to move.
+            </p>
+
+
+            <button
+                class="gold-button"
+                onclick="returnFromGame()"
+            >
+                CONTINUE →
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MYSTERY BOXES
+    ====================================================== -->
+
+    <section
+        id="mysteries"
+        class="screen"
+    >
+
+        <div class="mystery-container">
+
+
+            <div class="section-label">
+                THREE LITTLE THINGS
+            </div>
+
+
+            <h2>
+                Pick a box
+            </h2>
+
+
+            <p>
+                No idea what's inside.
+                That's kind of the point. 👀
+            </p>
+
+
+            <div class="mystery-boxes">
+
+
+                <button
+                    class="mystery-box"
+                    onclick="openBox(1)"
+                >
+
+                    <span>
+                        ?
+                    </span>
+
+                    <small>
+                        BOX 01
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="mystery-box"
+                    onclick="openBox(2)"
+                >
+
+                    <span>
+                        ?
+                    </span>
+
+                    <small>
+                        BOX 02
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="mystery-box"
+                    onclick="openBox(3)"
+                >
+
+                    <span>
+                        ?
+                    </span>
+
+                    <small>
+                        BOX 03
+                    </small>
+
+                </button>
+
+
+            </div>
+
+
+            <div
+                id="boxMessage"
+                class="box-message"
+            >
+
+                Choose one...
+
+            </div>
+
+
+            <button
+                class="gold-button"
+                onclick="returnFromMysteries()"
+            >
+
+                CONTINUE →
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BIRTHDAY WISHES
+    ====================================================== -->
+
+    <section
+        id="wishes"
+        class="screen"
+    >
+
+        <div class="wishes-container">
+
+
+            <div class="section-label">
+                A FEW WORDS FOR YOUR DAY
+            </div>
+
+
+            <h2>
+                Birthday Wishes
+            </h2>
+
+
+            <p class="wishes-intro">
+
+                Since a birthday deserves more than
+                one sentence...
+
+            </p>
+
+
+            <div class="wish-cards">
+
+
+                <div class="wish-card">
+
+                    <span>
+                        ✦
+                    </span>
+
+                    <h3>
+                        Good Days
+                    </h3>
+
+                    <p>
+
+                        I hope this year gives you
+                        plenty of days that are
+                        genuinely worth remembering.
+
+                    </p>
+
+                </div>
+
+
+                <div class="wish-card">
+
+                    <span>
+                        🎵
+                    </span>
+
+                    <h3>
+                        Good Music
+                    </h3>
+
+                    <p>
+
+                        May you discover songs
+                        that somehow become
+                        attached to your favorite memories.
+
+                    </p>
+
+                </div>
+
+
+                <div class="wish-card">
+
+                    <span>
+                        😂
+                    </span>
+
+                    <h3>
+                        More Laughter
+                    </h3>
+
+                    <p>
+
+                        Hopefully there are lots
+                        of ridiculous moments
+                        and reasons to laugh this year.
+
+                    </p>
+
+                </div>
+
+
+                <div class="wish-card">
+
+                    <span>
+                        🌟
+                    </span>
+
+                    <h3>
+                        New Memories
+                    </h3>
+
+                    <p>
+
+                        Here's to new places,
+                        random adventures,
+                        and stories you'll remember later.
+
+                    </p>
+
+                </div>
+
+
+                <div class="wish-card">
+
+                    <span>
+                        ☀️
+                    </span>
+
+                    <h3>
+                        Good People
+                    </h3>
+
+                    <p>
+
+                        I hope you always have
+                        people around you who make
+                        ordinary days better.
+
+                    </p>
+
+                </div>
+
+
+                <div class="wish-card">
+
+                    <span>
+                        🍀
+                    </span>
+
+                    <h3>
+                        A Little Luck
+                    </h3>
+
+                    <p>
+
+                        And maybe a little extra luck
+                        for whatever comes next.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="gold-button"
+                onclick="birthday()"
+            >
+
+                🎂 FINAL BIRTHDAY SCREEN
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL BIRTHDAY SCREEN
+    ====================================================== -->
+
+    <section
+        id="birthday"
+        class="screen"
+    >
+
+        <div class="final-room">
+
+
+            <div class="birthday-card vintage-card">
+
+
+                <div class="string-lights">
+
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+
+                </div>
+
+
+                <div class="cake">
+
+                    <div class="flame">
+                        🕯️
+                    </div>
+
+                    <div class="cake-body">
+                        🎂
+                    </div>
+
+                </div>
+
+
+                <div class="small-label">
+                    A VERY SPECIAL DAY
+                </div>
+
+
+                <h1 class="birthday-title">
+
+                    Happy Birthday!
+
+                </h1>
+
+
+                <div class="divider">
+                    ───── ✦ ─────
+                </div>
+
+
+                <p class="birthday-message">
+
+                    I hope today brings you
+                    good music,
+
+                    <br>
+
+                    good memories,
+
+                    <br>
+
+                    lots of laughter,
+
+                    <br>
+
+                    and plenty of reasons to smile.
+
+                    <br><br>
+
+                    Hope you have an amazing year
+                    ahead and make some seriously
+                    good memories along the way.
+
+                </p>
+
+
+                <div class="little-note">
+
+                    ✨
+
+                    <br><br>
+
+                    Here's to another year,
+                    another chapter,
+                    and plenty of good things
+                    still waiting to happen.
+
+                    <br><br>
+
+                    Have a great one!
+
+                    <br><br>
+
+                    💫
+
+                </div>
+
+
+                <div class="signature">
+
+                    — random_tech_guy
+
+                </div>
+
+
+                <button
+                    class="gold-button"
+                    onclick="restart()"
+                >
+
+                    ↻ TRAVEL AGAIN
+
+                </button>
+
+
+                <div class="footer-credit">
+
+                    Made with late-night vibes 🌙
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
